@@ -1,6 +1,6 @@
 package com.demo.tdd.chapter.one;
-
-import static org.junit.Assert.assertEquals;
+ 
+import static org.junit.Assert.assertEquals; 
 
 import org.junit.jupiter.api.Test;
 
@@ -10,8 +10,8 @@ public class Multicurrency {
 
 	@Test
 	void TestMultiplication() {
-		Dollar dollar = new Dollar(5);
+		Dollar dollar = new Dollar(2.5);
 		dollar.times(2);
-		assertEquals(10, dollar.amount);
+		assertEquals(6.0,dollar.getAmount(),0.0001);
 	}
 }
