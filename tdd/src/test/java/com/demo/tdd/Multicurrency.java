@@ -1,30 +1,39 @@
 package com.demo.tdd;
  
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.jupiter.api.Test;
  
 
 public class Multicurrency {
-
-	Dollar five = new Dollar(5);
-	Franc six = new Franc(6);
+ 
 	
 	@Test
-	void TestMultiplication() { 
-		assertEquals(new Dollar(10),five.times(2)); 
-		assertEquals(new Dollar(15),five.times(3));
-		assertEquals(new Franc(12),six.times(2));
-		assertEquals(new Franc(18),six.times(3));
+	void TestDollarMultiplication() { 
+		Money dollar = Money.dollar(5);
+		assertEquals(Money.dollar(10),dollar.times(2));  
 	}
 	
 	@Test
-	void TestEquality() {
-		assertTrue(five.equals(new Dollar(5)));
-		assertTrue(!five.equals(new Dollar(6)));
-		assertTrue(six.equals(new Franc(6)));
-		assertTrue(!six.equals(new Franc(5)));
+	void TestFrancMultiplication() {
+		Money franc = Money.franc(5);
+		assertEquals(Money.franc(10),franc.times(2));
+	}
+	
+	@Test
+	void TestDollarEquality() {
+		assertTrue(Money.dollar(5).equals(Money.dollar(5)));
+		assertFalse(Money.dollar(5).equals(Money.dollar(2)));
+		assertFalse(Money.dollar(5).equals(Money.franc(5)));
+	}
+	
+	@Test
+	void TestFrancEquality() {
+		assertTrue(Money.franc(5).equals(Money.franc(5)));
+		assertFalse(Money.franc(5).equals(Money.franc(2)));
+		assertFalse(Money.franc(5).equals(Money.dollar(5)));
 	}
 	
 	
