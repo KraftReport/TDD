@@ -2,13 +2,13 @@ package com.demo.tdd;
 
 public class Dollar extends Money {
 
-	public Dollar(int amount) {
-		this.amount =amount;
+	public Dollar(int amount,String currency) {
+		super(amount,currency);
 	} 
-	  
+	   
 	@Override
-	public Money times(int times) { 
-		return new Dollar(this.amount * times);
+	public String currency() { 
+		return this.currency;
 	}
  
 }
