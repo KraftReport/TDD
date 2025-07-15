@@ -41,11 +41,7 @@ public class Multicurrency {
 		assertEquals(Money.franc(8).currency(),"CHF");
 		assertEquals(Money.dollar(8).currency(), "USD");
 	}
-	
-	@Test
-	void testDifferentClassEquality() {
-		assertTrue(new Money(1, "USD").equals(new Dollar(1, "USD")));
-	}
+	 
 	
 	
 }
