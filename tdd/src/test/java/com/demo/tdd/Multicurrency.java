@@ -11,7 +11,7 @@ public class Multicurrency {
  
 	
 	@Test
-	void TestDollarMultiplication() { 
+	void testDollarMultiplication() { 
 		Money dollar = Money.dollar(5);
 		assertEquals(Money.dollar(10),dollar.times(2));  
 	}
@@ -23,17 +23,28 @@ public class Multicurrency {
 	}
 	
 	@Test
-	void TestDollarEquality() {
+	void testDollarEquality() {
 		assertTrue(Money.dollar(5).equals(Money.dollar(5)));
 		assertFalse(Money.dollar(5).equals(Money.dollar(2)));
 		assertFalse(Money.dollar(5).equals(Money.franc(5)));
 	}
 	
 	@Test
-	void TestFrancEquality() {
+	void testFrancEquality() {
 		assertTrue(Money.franc(5).equals(Money.franc(5)));
 		assertFalse(Money.franc(5).equals(Money.franc(2)));
 		assertFalse(Money.franc(5).equals(Money.dollar(5)));
+	}
+	
+	@Test
+	void testCurrency() {
+		assertEquals(Money.franc(8).currency(),"CHF");
+		assertEquals(Money.dollar(8).currency(), "USD");
+	}
+	
+	@Test
+	void testDifferentClassEquality() {
+		assertTrue(new Money(1, "USD").equals(new Dollar(1, "USD")));
 	}
 	
 	

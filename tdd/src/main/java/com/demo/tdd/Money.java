@@ -1,10 +1,26 @@
 package com.demo.tdd;
 
-public abstract class Money {
+public class Money {
 
+	protected String currency;
 	protected int amount;
 	
-	public abstract Money times(int amount) ;
+	public String currency() {
+		return this.currency;
+	}
+	
+	public Money times(int multiplier) {
+		return new Money(this.amount * multiplier, currency);
+	}
+	
+	public Money(int amount,String currency) {
+		 this.amount = amount;
+		 this.currency = currency;
+	}
+	
+	public String toString() {
+		return amount + " " + currency;
+	}
 	
 	public void setAmount(int amount) {
 		this.amount = amount;
@@ -15,16 +31,16 @@ public abstract class Money {
 	}
 	
 	public static Money dollar(int amount) {
-		return new Dollar(amount);
+		return new Dollar(amount,"USD");
 	}
 	
 	public static Money franc(int amount) {
-		return new Franc(amount);
+		return new Franc(amount,"CHF");
 	}
 	
 	public boolean equals(Object obj) {
 		var money = (Money)obj; 
 		return this.amount == money.getAmount() &&
-				this.getClass().equals(money.getClass());
+				this.currency().equals(money.currency());
 	}
 }
