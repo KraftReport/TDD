@@ -1,6 +1,6 @@
 package com.demo.tdd;
 
-public class Money {
+public class Money implements Expression{
 
 	protected String currency;
 	protected int amount;
@@ -42,5 +42,9 @@ public class Money {
 		var money = (Money)obj; 
 		return this.amount == money.getAmount() &&
 				this.currency().equals(money.currency());
+	}
+	
+	public Expression sum(Money added) {
+		return new Money(this.amount+added.amount,currency);
 	}
 }
