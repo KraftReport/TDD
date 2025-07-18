@@ -44,11 +44,31 @@ public class Multicurrency {
 	 
 	@Test
 	void simpleAdditionTest() {
-		var five = Money.dollar(5);
-		var sum = five.sum(five);
-		var bank = new Bank();
+		Money five = Money.dollar(5);
+		Sum sum =(Sum) five.sum(five);
+		Bank bank = new Bank();
 		var reduced = bank.reduce(sum,"USD");
 		assertEquals(Money.dollar(10), reduced);
 	}
+	
+	@Test
+	void testPlusMethod() {
+		Money four = Money.dollar(4);
+		Money three = Money.dollar(3);
+		Expression sum = four.sum(three);
+		Sum result = (Sum)sum;
+		assertEquals(result.getAugend(), four);
+		assertEquals(result.getAddend(), three);
+	}
+	
+	@Test
+	void testReduceMoney() {
+		Money one = Money.dollar(1);
+		Bank bank = new Bank();
+		Money result = bank.reduce(one, "USD");
+		assertEquals(Money.dollar(1),result);
+	}
+	
+	
 	
 }
