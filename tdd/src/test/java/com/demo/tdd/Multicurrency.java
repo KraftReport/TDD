@@ -69,6 +69,19 @@ public class Multicurrency {
 		assertEquals(Money.dollar(1),result);
 	}
 	
+	@Test
+	void testRate() {
+		Bank bank = new Bank();
+		bank.setRate("CHF","USD",2);
+		Money result = bank.reduce(Money.franc(2), "USD");
+		assertEquals(Money.dollar(1),result);
+	}
+	
+	@Test
+	void testPair() {
+		assertEquals(1, new Bank().rate("USD", "USD"));
+	}
+	
 	
 	
 }
