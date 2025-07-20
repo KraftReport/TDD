@@ -82,6 +82,43 @@ public class Multicurrency {
 		assertEquals(1, new Bank().rate("USD", "USD"));
 	}
 	
+	@Test
+	void testMixCurrencies() {
+		Expression fiveBucks = Money.dollar(5);
+		Expression tenFrancs = Money.franc(10);
+		Bank bank = new Bank();
+		bank.setRate("CHF", "USD", 2);
+		Money result = bank.reduce(fiveBucks.sum(tenFrancs),"USD");
+		assertEquals(Money.dollar(10), result);
+	}
+	
+	@Test
+	void testSumPlusMoney() {
+		Expression fiveBucks = Money.dollar(5);
+		Expression tenFrancs = Money.franc(10);
+		Bank bank = new Bank();
+		bank.setRate("CHF", "USD", 2);
+		Expression sum = new Sum(fiveBucks,tenFrancs).sum(fiveBucks);
+		Money result = bank.reduce(sum, "USD"); 
+		assertEquals(result, Money.dollar(15));
+	}
+	
+	@Test
+	void testTimesMoney() {
+		Expression fiveBucks = Money.dollar(5);
+		Expression fiveFrancs = Money.franc(5);
+		Bank bank = new Bank();
+		bank.setRate("CHF", "USD", 2);
+		Expression sum = new Sum(fiveBucks,fiveFrancs).times(2);
+		Money result = bank.reduce(sum, "USD");
+		assertEquals(Money.dollar(15), result);
+	}
+	
+	@Test
+	void testPlusSameCurrencyReturnsMoney() {
+		Expression result = Money.dollar(1).sum(Money.dollar(1));
+		assertTrue(result instanceof Sum);
+	}
 	
 	
 }

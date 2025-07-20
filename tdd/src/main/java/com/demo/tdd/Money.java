@@ -9,7 +9,8 @@ public class Money implements Expression{
 		return this.currency;
 	}
 	
-	public Money times(int multiplier) {
+	@Override
+	public Expression times(int multiplier) {
 		return new Money(this.amount * multiplier, currency);
 	}
 	
@@ -44,7 +45,8 @@ public class Money implements Expression{
 				this.currency().equals(money.currency());
 	}
 	
-	public Expression sum(Money added) {
+	@Override
+	public Expression sum(Expression added) {
 		return new Sum(this,added);
 	}
 
