@@ -12,7 +12,7 @@ public class Bank {
 	
 	public int rate(String from,String to) {
 		if(from.equals(to))return 1;
-		return from.equals("CHF") && to.equals("USD") ? 2 : 1; 
+		return getRate(new Pair(from,to)); 
 	}
 	
 	public void setRate(String from,String to,int rate) {
